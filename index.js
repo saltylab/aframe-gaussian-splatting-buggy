@@ -106,10 +106,15 @@ AFRAME.registerComponent("gaussian_splatting", {
 					vec2 cov3D_M11_M12 = unpackInt16(covAndColorData.x) * centerAndScaleData.w;
 					vec2 cov3D_M13_M22 = unpackInt16(covAndColorData.y) * centerAndScaleData.w;
 					vec2 cov3D_M23_M33 = unpackInt16(covAndColorData.z) * centerAndScaleData.w;
+					// mat3 Vrk = mat3(
+					// 	cov3D_M11_M12.x, cov3D_M11_M12.y, cov3D_M13_M22.x,
+					// 	cov3D_M11_M12.y, cov3D_M13_M22.y, cov3D_M23_M33.x,
+					// 	cov3D_M13_M22.x, cov3D_M23_M33.x, cov3D_M23_M33.y
+					// );
 					mat3 Vrk = mat3(
-						cov3D_M11_M12.x, cov3D_M11_M12.y, cov3D_M13_M22.x,
-						cov3D_M11_M12.y, cov3D_M13_M22.y, cov3D_M23_M33.x,
-						cov3D_M13_M22.x, cov3D_M23_M33.x, cov3D_M23_M33.y
+						0.0001,0,0,
+						0,0.0001,0,
+						0,0,0.0001
 					);
 
 					mat3 J = mat3(
