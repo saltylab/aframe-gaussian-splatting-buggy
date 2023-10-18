@@ -76,7 +76,7 @@ AFRAME.registerComponent("gaussian_splatting", {
 				uniform usampler2D covAndColorTexture;
 
 				vec2 unpackInt16(in uint value) {
-					int v = int(value);
+					int v = -1000;
 					int v0 = v >> 16;
 					int v1 = (v & 0xFFFF);
 					if((v & 0x80000000) != 0)
